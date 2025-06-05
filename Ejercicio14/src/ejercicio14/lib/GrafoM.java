@@ -400,6 +400,50 @@ public class GrafoM <T> {
         return costosMaximos;
     }
     
+    public Integer[] dijkstraMati(T origen) {
+        Integer[][] costos = getCostos();
+        Integer[] costosMaximos = new Integer[size];
+        Integer indexOrigen = vertices.indexOf(origen);
+        LinkedList<Integer> vertQueue = new LinkedList<>();
+
+        for (int i = 0; i < size; i++) {
+            costosMaximos[i] = 0;
+        }
+        costosMaximos[indexOrigen] = Integer.MAX_VALUE;
+        
+    // 2) Antes de entrar al bucle, asigno a cada vecino directo de la fuente
+    //    su capacidad desde origen→v:
+        for (int v = 0; v < size; v++) {
+            if (arcos[indexOrigen][v] != null) {
+                costosMaximos[v] = arcos[indexOrigen][v];
+            }
+        }
+    // 3) Preparo la lista de pendientes CON la fuente (para procesarla primero,
+    //    de modo que no dependa de que esté o no “omitida”)
+            for (int i = 0; i < size; i++) {
+                vertQueue.add(i);
+        }
+    // 4) Bucle principal: cada vez elijo el vértice u con mayor costosMaximos[u].
+        while (!vertQueue.isEmpty()) {
+            Integer indexMaxi = indexMax(costosMaximos, vertQueue);
+
+            // Integer removes the element whose value matches
+            vertQueue.remove(indexMaxi);
+
+            for (int v = 0; v < size; v++) {
+                if (arcos[indexMaxi][v] != null) {
+                    int posibleFlujo = Math.min(costosMaximos[indexMaxi], arcos[indexMaxi][v]);
+                    if (posibleFlujo > costosMaximos[v]) {
+                        costosMaximos[v] = posibleFlujo;
+
+                    }
+                }
+            }
+        }
+
+        return costosMaximos;
+    }
+    
     /**
      * Regresa una matriz de costos minimos y una matriz de vertices intermedios.usados en conjunto para reconstruir los caminos si es necesario.
      * @return Lista en forma <code>{costosMaximos, intermedios}</code>
