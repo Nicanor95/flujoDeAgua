@@ -420,8 +420,8 @@ public class GrafoM <T> {
         }
     // 3) Preparo la lista de pendientes CON la fuente (para procesarla primero,
     //    de modo que no dependa de que esté o no “omitida”)
-            for (int i = 0; i < size; i++) {
-                vertQueue.add(i);
+        for (int i = 0; i < size; i++) {
+            vertQueue.add(i);
         }
     // 4) Bucle principal: cada vez elijo el vértice u con mayor costosMaximos[u].
         while (!vertQueue.isEmpty()) {
@@ -439,6 +439,10 @@ public class GrafoM <T> {
                     }
                 }
             }
+        }
+        
+        for (int i = 0; i < size; i++) {
+            if ( costosMaximos[i] == Integer.MAX_VALUE ) costosMaximos[i] = 0;
         }
 
         return costosMaximos;
