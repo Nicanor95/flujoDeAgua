@@ -183,7 +183,7 @@ public class GrafoM <T> {
     }
     
     /**
-     * Imprime los vertices adyacentes de <code>vertice</code>
+     * Regresa una lista de los vertices adyacentes de <code>vertice</code>
      * @param vertice 
      * @return Lista de los vertices adyacentes de <code>vertice</code>.
      */
@@ -201,7 +201,7 @@ public class GrafoM <T> {
     }
     
     /**
-     * Imprime los vertices incidentes en <code>vertice</code>
+     * Regresa una lista de vertices incidentes en <code>vertice</code>
      * @param vertice 
      * @return Lista de vertices incidentes en <code>vertice</code>
      */
@@ -219,7 +219,7 @@ public class GrafoM <T> {
     }
     
     /**
-     * Imprime la lista extendida de adyacentes de <code>vertice</code>
+     * Regresa una lista extendida de adyacentes de <code>vertice</code>
      * @param vertice 
      * @return  Lista extendida de adyacentes de <code>vertice</code>
      */
@@ -244,7 +244,7 @@ public class GrafoM <T> {
     }
     
     /**
-     * Imprime la lista extendida de incidentes en <code>vertice</code>
+     * Regresa una lista extendida de incidentes en <code>vertice</code>
      * @param vertice 
      * @return Lista extendida de incidentes en <code>vertice</code>
      */
