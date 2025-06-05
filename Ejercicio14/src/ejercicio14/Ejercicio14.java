@@ -1,20 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package ejercicio14;
 
-/**
- *
- * @author nikan
- */
-public class Ejercicio14 {
+import java.util.Scanner;
 
-    /**
-     * @param args the command line arguments
-     */
+public class Ejercicio14 {
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+        Scanner scanner = new Scanner(System.in);
+        String input;
+        
+        do {
+            makeMenu();
+            input = scanner.nextLine();
+        } while (!input.startsWith("7"));
     }
     
+    public static void makeMenu() {
+        System.out.println("======== MENU ========");
+        System.out.println("=> 1 - Agregar bombas"); //Usando GrafoM.inicializar() ??
+        System.out.println("=> 2 - Agregar canal");
+        System.out.println("=> 3 - Mostrar red");
+        System.out.println("=> 4 - Capacidad bomba a bomba"); //Encontrar mejor nombre
+        System.out.println("=> 5 - Capacidad hasta bomba"); //Encontrar mejor nombre
+        System.out.println("=> 6 - Camino capacidad maxima bomba a bomba"); // floydWarshall() y getCamino()
+        System.out.println("=> 7 - Salir");
+        System.out.println("======================");
+        System.out.print("Ingrese Opcion: ");
+    }
 }
