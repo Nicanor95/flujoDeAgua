@@ -276,7 +276,7 @@ public class GrafoM <T> {
      * @return Indice del minimo en <code>arr</code> tal que este en <code>available</code>
      */
     private Integer indexMin(Integer[] arr, List<Integer> available) {
-        int smallest = available.getFirst(); // Fill smallest with a value in available
+        int smallest = available.getFirst(); // Fill max with a value in available
         
         for(int i : available) {
             if (arr[i] < smallest) {
@@ -285,6 +285,18 @@ public class GrafoM <T> {
         }
         
         return smallest;
+    }
+    
+    private Integer indexMax(Integer[] arr, List<Integer> available) {
+        int max = available.getFirst(); // Fill max with a value in available
+        
+        for(int i : available) {
+            if (!arr[i].equals(Integer.MAX_VALUE) && arr[i] > max) {
+                max = i;
+            }
+        }
+        
+        return max;
     }
     
     /**
@@ -350,10 +362,47 @@ public class GrafoM <T> {
         return costosMinimos;
     }
     
+    public Integer[] dijkstraInvertido(T origen) {
+        Integer[][] costos = getCostos();
+        Integer[] costosMaximos = new Integer[size];
+        Integer indexOrigen = vertices.indexOf(origen);
+        LinkedList<Integer> vertQueue = new LinkedList<>();
+        
+        for (int i = 0; i < size; i++) {
+            costosMaximos[i] = costos[indexOrigen][i]; // Copiamos los costos minimos de una fila
+            if (!indexOrigen.equals(i)) { 
+                vertQueue.add(i); // Agregamos los indices de cada uno de los vertices a probar
+            }
+        }
+        
+        while (!vertQueue.isEmpty()) {
+            Integer indexMaximo = indexMax(costosMaximos, vertQueue);
+            
+            // Integer removes the element whose value matches
+            vertQueue.remove(indexMaximo);
+            
+            for (int queuedVert : vertQueue) {
+                if (costosMaximos[queuedVert] == Integer.MAX_VALUE) {
+                    costosMaximos[queuedVert] = 0;
+                }
+                if (costosMaximos[indexMaximo] != Integer.MAX_VALUE && costos[indexMaximo][queuedVert] != Integer.MAX_VALUE) {
+                    if (costosMaximos[queuedVert] < costosMaximos[indexMaximo] + costos[indexMaximo][queuedVert]) {
+                        costosMaximos[queuedVert] = costosMaximos[indexMaximo] + costos[indexMaximo][queuedVert];
+                    }
+                } 
+            }
+        }
+        
+        for (int i = 0; i < size; i++) {
+            if (costosMaximos[i] == Integer.MAX_VALUE) costosMaximos[i] = null;
+        }
+        
+        return costosMaximos;
+    }
+    
     /**
-     * Regresa una matriz de costos minimos y una matriz de vertices intermedios.
-     * usados en conjunto para reconstruir los caminos si es necesario.
-     * @return Lista en forma <code>{costosMinimos, intermedios}</code>
+     * Regresa una matriz de costos minimos y una matriz de vertices intermedios.usados en conjunto para reconstruir los caminos si es necesario.
+     * @return Lista en forma <code>{costosMaximos, intermedios}</code>
      */
     public ArrayList floydWarshall() {
         Integer[][] costos = getCostos();
