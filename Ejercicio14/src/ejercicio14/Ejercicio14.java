@@ -27,6 +27,7 @@ public class Ejercicio14 {
                     cambios = true;
                 }
                 case "2" -> {
+                    redAgua.dibujarMatriz(true);
                     System.out.print("Zona origen: ");
                     String origen = scanner.nextLine();
                     System.out.print("Zona destino: ");
@@ -36,11 +37,15 @@ public class Ejercicio14 {
                     scanner.nextLine(); // limpiar buffer
                     try {
                         redAgua.agregarArco(origen, destino, capacidad);
+                        redAgua.dibujarMatriz(true);
                         System.out.println("Canal agregado con éxito.");
                     } catch (UnsupportedOperationException e) {
                         System.out.println("Error: " + e.getMessage());
                     } finally {
                         cambios = true;
+                        
+                        System.out.printf("%n%nPresione ENTER para continuar...%n");
+                        scanner.nextLine();
                     }
                 }
                 case "3" -> {

@@ -129,6 +129,9 @@ public class GrafoM <T> {
         Scanner input = new Scanner(System.in);
         
         do {
+            //Mostramos la matriz.
+            dibujarMatriz(false);
+            
             System.out.printf("Nombre de %s: ", singular);
             this.agregarVertice((T) input.nextLine()); // IDK
             
@@ -144,6 +147,10 @@ public class GrafoM <T> {
      * @param etiquetas <code>true</code> incluye las etiquetas.
      */
     public void dibujarMatriz(boolean etiquetas) {
+        // Escape temprano si la matriz esta vacia
+        if (vertices.isEmpty()) {
+            return;
+        }
         
         // Construir encabezado
         System.out.printf("          ");
@@ -159,13 +166,13 @@ public class GrafoM <T> {
                     if (etiquetas) {
                         System.out.printf(" |%10d", getEtiqueta(vertices.get(i), vertices.get(j)));
                     } else {
-                        System.out.print(" | V");
+                        System.out.printf(" |%10s", "V");
                     }
                 } else {
                     if (etiquetas) {
                         System.out.printf(" |%10s", "F");
                     } else {
-                        System.out.print(" | F");
+                        System.out.printf(" |%10s", "F");
                     }
                 }
             }
