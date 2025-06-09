@@ -378,6 +378,11 @@ public class GrafoM <T> {
         return costosMinimos;
     }
     
+    /**
+     * Regresa un arreglo con los costos maximos desde un vertice <code>origen</code> a cada uno de los vertices.
+     * @param origen Vertice de origen
+     * @return Arreglo con costos maximos de <code>origen</code> a el resto de vertices alcanzables.
+     */
     public Integer[] dijkstraInvertido(T origen) {
         Integer[][] costos = getCostos();
         Integer[] costosMaximos = new Integer[size];
@@ -416,6 +421,38 @@ public class GrafoM <T> {
         return costosMaximos;
     }
     
+    /***
+     * Usa el algoritmo de dijkstraInvertido() para encontrar el costo a un vertice
+     * @param origen vertice de origen
+     * @param destino vertice destino
+     * @return el costo desde el vertice <code>origen</code> al vertice <code>destino</code>
+     */
+    public Integer dijkstraInvertido(T origen, T destino) {
+        int indexDestino = vertices.indexOf(destino);
+        Integer[] costos = dijkstraInvertido(origen);
+        return costos[indexDestino];
+    }
+    
+    
+    public LinkedList<VerticeCosto> maximoFlujoA(T destino) {
+        LinkedList<VerticeCosto> retorno = new LinkedList<>();
+        // Obtenemos la lista de izquierda extendida.
+        LinkedList<T> izquierda = leftExtended(destino);
+        
+        // Para cada elemento en la izquierda extendida, obtenemos el camino a destino.
+        for (T origen: izquierda) {
+            VerticeCosto paquete = new VerticeCosto(origen, dijkstraInvertido(origen, destino));
+            retorno.add(paquete);
+        }
+        
+        return retorno;
+    }
+    
+    /***
+     * Regresa el minimo costo (flujo) de un punto <code>origen</code> al resto del grafo, tratando de maximizar el mismo costo.
+     * @param origen
+     * @return Arreglo con el minimo de los maximos a cada punto del grafo.
+     */
     public Integer[] dijkstraMati(T origen) {
         Integer[][] costos = getCostos();
         Integer[] costosMaximos = new Integer[size];
