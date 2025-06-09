@@ -120,9 +120,9 @@ public class Ejercicio14 {
         System.out.println("=> 1 - Agregar zonas"); //Usando GrafoM.inicializar() ??
         System.out.println("=> 2 - Agregar canal");
         System.out.println("=> 3 - Mostrar red");
-        System.out.println("=> 4 - Capacidad bomba a bomba"); //Encontrar mejor nombre
-        System.out.println("=> 5 - Capacidad hasta bomba"); //Encontrar mejor nombre
-        System.out.println("=> 6 - Camino capacidad maxima bomba a bomba"); // floydWarshall() y getCamino()
+        System.out.println("=> 4 - Capacidad zona a zona"); //Encontrar mejor nombre
+        System.out.println("=> 5 - Capacidad hasta zona"); //Encontrar mejor nombre
+        System.out.println("=> 6 - Camino capacidad maxima zona a zona"); // floydWarshall() y getCamino()
         System.out.println("=> 7 - Salir");
         System.out.println("======================");
         System.out.print("Ingrese Opcion: ");
