@@ -23,7 +23,7 @@ public class Ejercicio14 {
                 case "1" -> {
                     // Inicializar agrega vertices (bombas) de forma interactiva
                     // Amplia el arreglo si es necesario.
-                    redAgua.inicializar();
+                    redAgua.inicializar("Zona", "Zonas");
                     cambios = true;
                 }
                 case "2" -> {

@@ -117,13 +117,22 @@ public class GrafoM <T> {
      * Interactivo para cargar el grafo.
      */
     public void inicializar() {
+        inicializar("Vertice", "Vertices");
+    }
+    
+    /**
+     * Interactivo para cargar el grafo. Incluya nombres deseados.
+     * @param singular sustantivo singular para usar de vertice.
+     * @param plural sustantivo plural para usar de vertice.
+     */
+    public void inicializar(String singular, String plural) {
         Scanner input = new Scanner(System.in);
         
         do {
-            System.out.printf("vertice: ");
+            System.out.printf("Nombre de %s: ", singular);
             this.agregarVertice((T) input.nextLine()); // IDK
             
-            System.out.println("Agegar mas vertices? S/N");
+            System.out.printf("Agegar mas %s? S/N%n", plural);
         } while (input.nextLine().toLowerCase().startsWith("s"));
         
         size = vertices.size();
@@ -135,7 +144,16 @@ public class GrafoM <T> {
      * @param etiquetas <code>true</code> incluye las etiquetas.
      */
     public void dibujarMatriz(boolean etiquetas) {
+        
+        // Construir encabezado
+        System.out.printf("          ");
         for (int i = 0; i < vertices.size(); i++) {
+            System.out.printf(" |%10s", vertices.get(i));
+        }
+        System.out.printf(" |%n");
+        
+        for (int i = 0; i < vertices.size(); i++) {
+            System.out.printf("%10s", vertices.get(i));
             for (int j = 0; j < vertices.size(); j++) {
                 if (arcos[i][j] != null) {
                     if (etiquetas) {
