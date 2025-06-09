@@ -132,14 +132,23 @@ public class GrafoM <T> {
     
     /**
      * Grafica la matriz en stdout.
+     * @param etiquetas <code>true</code> incluye las etiquetas.
      */
-    public void dibujarMatriz() {
+    public void dibujarMatriz(boolean etiquetas) {
         for (int i = 0; i < vertices.size(); i++) {
             for (int j = 0; j < vertices.size(); j++) {
                 if (arcos[i][j] != null) {
-                    System.out.print(" | V");
+                    if (etiquetas) {
+                        System.out.printf(" |%10d", getEtiqueta(vertices.get(i), vertices.get(j)));
+                    } else {
+                        System.out.print(" | V");
+                    }
                 } else {
-                    System.out.print(" | F");
+                    if (etiquetas) {
+                        System.out.printf(" |%10s", "F");
+                    } else {
+                        System.out.print(" | F");
+                    }
                 }
             }
             System.out.println(" |");
@@ -287,6 +296,13 @@ public class GrafoM <T> {
         return smallest;
     }
     
+    /**
+     * Regresa el indice del <code>Integer</code> maximo en <code>arr</code>
+     * Toma solo los indices en <code>available</code>
+     * @param arr arreglo de ingreso
+     * @param available indices a chequear en <code>arr</code>
+     * @return Indice del maximo en <code>arr</code> tal que este en <code>available</code>
+     */
     private Integer indexMax(Integer[] arr, List<Integer> available) {
         int max = available.getFirst(); // Fill max with a value in available
         
