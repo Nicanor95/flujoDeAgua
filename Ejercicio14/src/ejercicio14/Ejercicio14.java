@@ -117,7 +117,7 @@ public class Ejercicio14 {
     
     public static void makeMenu() {
         System.out.println("======== MENU ========");
-        System.out.println("=> 1 - Agregar bombas"); //Usando GrafoM.inicializar() ??
+        System.out.println("=> 1 - Agregar zonas"); //Usando GrafoM.inicializar() ??
         System.out.println("=> 2 - Agregar canal");
         System.out.println("=> 3 - Mostrar red");
         System.out.println("=> 4 - Capacidad bomba a bomba"); //Encontrar mejor nombre
