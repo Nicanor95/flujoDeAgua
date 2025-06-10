@@ -28,11 +28,12 @@ public class GrafoM <T> {
     }
     
     /**
-     * Agrega un vertice al grafo. Extiende el arreglo si no queda espacio en el mismo.
+     * Agrega un vertice al grafo.Extiende el arreglo si no queda espacio en el mismo.
      * @param vertice el nombre del vertice
+     * @return <code>false</code> si el vertice ya esta en el grafo.
      */
-    public void agregarVertice(T vertice) {
-        if (vertices.contains(vertice)) return; //Salida temprana.
+    public boolean agregarVertice(T vertice) {
+        if (vertices.contains(vertice)) return false; //Salida temprana.
         
         vertices.add(vertice);
         if (vertices.size() > size) {
@@ -45,10 +46,17 @@ public class GrafoM <T> {
             this.size = vertices.size();
             arcos = nuevoArcos;
         }
+        
+        return true;
     }
     
-    public void eliminarVertice(T vertice) {
-        if (!vertices.contains(vertice)) return; //Salida temprana.
+    /**
+     * Elimina el vertice con el nombre indicado.
+     * @param vertice 
+     * @return <code>false</code> si el vertice indicado no esta en el grafo.
+     */
+    public boolean eliminarVertice(T vertice) {
+        if (!vertices.contains(vertice)) return false; //Salida temprana.
         
         // Hacemos una lista de los vertices que referencian el vertice a eliminar.
         LinkedList<T> izquierda = this.left(vertice);
@@ -59,8 +67,9 @@ public class GrafoM <T> {
         }
         
         vertices.remove(vertice);
-        
         this.size = vertices.size();
+        
+        return true;
     }
     
     /**

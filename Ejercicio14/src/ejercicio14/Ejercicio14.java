@@ -53,8 +53,15 @@ public class Ejercicio14 {
                     redAgua.dibujarMatriz(true);
                     System.out.print("Zona a elminar: ");
                     String zona = scanner.nextLine();
-                    redAgua.eliminarVertice(zona);
+                    boolean exito = redAgua.eliminarVertice(zona);
                     
+                    if (exito) {
+                        System.out.printf("Zona %s eliminada con exito", zona);
+                    } else {
+                        System.out.printf("Zona %s no encontrada", zona);
+                    }
+                    
+                    cambios = true;
                     System.out.printf("%n%nPresione ENTER para continuar...%n");
                     scanner.nextLine();
                 }
@@ -66,10 +73,16 @@ public class Ejercicio14 {
                     System.out.print("Zona destino: ");
                     String destino = scanner.nextLine();
                     
-                    redAgua.eliminarArco(origen, destino);
-                    
-                    System.out.printf("%n%nPresione ENTER para continuar...%n");
-                    scanner.nextLine();
+                    try {
+                        redAgua.eliminarArco(origen, destino);
+                        System.out.printf("Canal %s --> %s eliminado", origen, destino);
+                    } catch (UnsupportedOperationException e) {
+                        System.out.println(e.getMessage());
+                    } finally {
+                        cambios = true;
+                        System.out.printf("%n%nPresione ENTER para continuar...%n");
+                        scanner.nextLine();
+                    }
                 }
                 case "5" -> {
                     // Mostrar red
