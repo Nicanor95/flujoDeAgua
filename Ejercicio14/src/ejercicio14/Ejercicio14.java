@@ -14,7 +14,7 @@ public class Ejercicio14 {
         ArrayList costosEIntermedios = new ArrayList<>();
         Boolean cambios = true;
         String input;
-               
+        
         do {
             makeMenu();
             input = scanner.nextLine();

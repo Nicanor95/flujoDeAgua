@@ -158,16 +158,13 @@ public class GrafoM <T> {
         
         do {
             //Mostramos la matriz.
-            dibujarMatriz(false);
+            dibujarMatriz(true);
             
             System.out.printf("Nombre de %s: ", singular);
             this.agregarVertice((T) input.nextLine()); // IDK
             
             System.out.printf("Agegar mas %s? S/N%n", plural);
         } while (input.nextLine().toLowerCase().startsWith("s"));
-        
-        size = vertices.size();
-        arcos = new Integer[size][size];
     }
     
     /**
