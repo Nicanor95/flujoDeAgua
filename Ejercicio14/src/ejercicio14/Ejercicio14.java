@@ -14,7 +14,7 @@ public class Ejercicio14 {
         ArrayList costosEIntermedios = new ArrayList<>();
         Boolean cambios = true;
         String input;
-        
+               
         do {
             makeMenu();
             input = scanner.nextLine();
@@ -148,6 +148,19 @@ public class Ejercicio14 {
                     scanner.nextLine();
                 }
                 case "9" -> {
+                    redAgua.dibujarMatriz(true);
+                    System.out.print("Zona origen: ");
+                    String origen = scanner.nextLine();
+
+                    LinkedList<VerticeCosto> flujos = redAgua.maximoFlujoDesde(origen);
+                    
+                    System.out.println("Capacidad maxima de la bomba a las demas:");
+                    for (VerticeCosto x: flujos) {
+                        System.out.printf("|%10s:%-10d|%n", x.getVertice(), x.getCosto());
+                    }
+                    
+                }
+                case "10" -> {
                     System.exit(0);
                 }
                 default -> {
@@ -169,7 +182,8 @@ public class Ejercicio14 {
         System.out.println("=> 6 - Capacidad zona a zona"); //Encontrar mejor nombre
         System.out.println("=> 7 - Capacidad hasta zona"); //Encontrar mejor nombre
         System.out.println("=> 8 - Camino capacidad maxima zona a zona"); // floydWarshall() y getCamino()
-        System.out.println("=> 9 - Salir");
+        System.out.println("=> 9 - Caminos de maxima capacidad desde zona");
+        System.out.println("=> 10 - Salir");
         System.out.println("======================");
         System.out.print("Ingrese Opcion: ");
     }

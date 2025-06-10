@@ -489,10 +489,10 @@ public class GrafoM <T> {
     
     public LinkedList<VerticeCosto> maximoFlujoA(T destino) {
         LinkedList<VerticeCosto> retorno = new LinkedList<>();
-        // Obtenemos la lista de izquierda extendida.
+        // Obtenemos la lista de derecha extendida.
         LinkedList<T> izquierda = leftExtended(destino);
         
-        // Para cada elemento en la izquierda extendida, obtenemos el camino a destino.
+        // Para cada elemento en la derecha extendida, obtenemos el camino a destino.
         for (T origen: izquierda) {
             VerticeCosto paquete = new VerticeCosto(origen, dijkstraInvertido(origen, destino));
             retorno.add(paquete);
@@ -501,6 +501,19 @@ public class GrafoM <T> {
         return retorno;
     }
     
+    public LinkedList<VerticeCosto> maximoFlujoDesde(T origen) {
+        LinkedList<VerticeCosto> retorno = new LinkedList<>();
+        // Obtenemos la lista de derecha extendida.
+        LinkedList<T> derecha = rightExtended(origen);
+        
+        // Para cada elemento en la derecha extendida, obtenemos el camino a destino.
+        for (T destino: derecha) {
+            VerticeCosto paquete = new VerticeCosto(destino, dijkstraInvertido(origen, destino));
+            retorno.add(paquete);
+        }
+        
+        return retorno;
+    }
     /***
      * Regresa el minimo costo (flujo) de un punto <code>origen</code> al resto del grafo, tratando de maximizar el mismo costo.
      * @param origen
