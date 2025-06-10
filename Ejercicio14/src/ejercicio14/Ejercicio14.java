@@ -91,7 +91,7 @@ public class Ejercicio14 {
                     String destino = scanner.nextLine();
                     
                     if (cambios) { //floydWarshall es O^3!!!
-                        costosEIntermedios = redAgua.floydWarshall();
+                        costosEIntermedios = redAgua.floydWarshallMaximos();
                         cambios = true;
                     }
                     

@@ -1,6 +1,7 @@
 package ejercicio14.lib;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -31,6 +32,8 @@ public class GrafoM <T> {
      * @param vertice el nombre del vertice
      */
     public void agregarVertice(T vertice) {
+        if (vertices.contains(vertice)) return; //Salida temprana.
+        
         vertices.add(vertice);
         if (vertices.size() > size) {
             Integer [][] nuevoArcos = new Integer[vertices.size()][vertices.size()];
@@ -527,7 +530,7 @@ public class GrafoM <T> {
     }
     
     /**
-     * Regresa una matriz de costos minimos y una matriz de vertices intermedios.usados en conjunto para reconstruir los caminos si es necesario.
+     * Regresa una matriz de costos minimos y una matriz de vertices intermedios usados en conjunto para reconstruir los caminos si es necesario.
      * @return Lista en forma <code>{costosMaximos, intermedios}</code>
      */
     public ArrayList floydWarshall() {
@@ -569,6 +572,63 @@ public class GrafoM <T> {
         retorno.add(costosMinimos);
         retorno.add(intermedios);
         
+        return retorno;
+    }
+    
+    /**
+     * Regresa una matriz de costos maximos y una matriz de vertices intermedios usados en conjunto para reconstruir los caminos si es necesario.
+     * @return Lista en forma <code>{costosMaximos, intermedios}</code>
+     */
+    public ArrayList floydWarshallMaximos() {
+        Integer[][] costos = getCostos();
+        Integer[][] costosMaximos = new Integer[size][size];
+        Integer[][] intermedios = new Integer[size][size]; // Para reconstruir caminos
+
+        // Inicializamos matriz de costos máximos
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (i == j) {
+                    costosMaximos[i][j] = 0; // La diagonal en 0.
+                } else if (costos[i][j] == Integer.MAX_VALUE) { 
+                    costosMaximos[i][j] = Integer.MIN_VALUE; // Para que el valor no interfiera en la busqueda de camino, ya que buscamos los mas altos.
+                } else {
+                    costosMaximos[i][j] = costos[i][j];
+                }
+
+                if (costos[i][j] == Integer.MAX_VALUE || costos[i][j] == 0) { // Si no hay camino.
+                    intermedios[i][j] = null; 
+                } else {
+                    intermedios[i][j] = i;
+                }
+            }
+        }
+
+        // Encontramos los caminos máximos de todos los vértices hacia todos los vértices
+        for (int k = 0; k < size; k++) {
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
+                    if (costosMaximos[i][k] != Integer.MIN_VALUE
+                        && costosMaximos[k][j] != Integer.MIN_VALUE
+                        && costosMaximos[i][k] != null
+                        && costosMaximos[k][j] != null) { // Chequeamos solo los caminos validos, MIN_VALUE y MAX_VALUE no se comportan al realizar operaciones, asi que mejor evitarlos de cuajo.
+                        Integer camino = costosMaximos[i][k] + costosMaximos[k][j];
+                        
+                        // Chequeamos que no (A) se tenga k en el camino, para evitar recursion infinita. Tomalo como un visited.
+                        // Tambien si (B) el costo en la casilla es menor al del nuevo camino. 
+                        // (¬ A ^ B)
+                        if (!Arrays.asList(intermedios[i]).contains(k) && costosMaximos[i][j] < camino) {
+                            costosMaximos[i][j] = camino;
+                            intermedios[i][j] = k;
+                        }
+                    }
+                }
+            }
+        }
+
+        ArrayList retorno = new ArrayList();
+        retorno.add(costosMaximos);
+        retorno.add(intermedios);
+
         return retorno;
     }
     
