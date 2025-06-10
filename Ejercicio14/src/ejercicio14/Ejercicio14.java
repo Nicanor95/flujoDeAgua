@@ -49,13 +49,36 @@ public class Ejercicio14 {
                     }
                 }
                 case "3" -> {
+                    // Eliminar zona
+                    redAgua.dibujarMatriz(true);
+                    System.out.print("Zona a elminar: ");
+                    String zona = scanner.nextLine();
+                    redAgua.eliminarVertice(zona);
+                    
+                    System.out.printf("%n%nPresione ENTER para continuar...%n");
+                    scanner.nextLine();
+                }
+                case "4" -> {
+                    // Eliminar canal
+                    redAgua.dibujarMatriz(true);
+                    System.out.print("Zona origen: ");
+                    String origen = scanner.nextLine();
+                    System.out.print("Zona destino: ");
+                    String destino = scanner.nextLine();
+                    
+                    redAgua.eliminarArco(origen, destino);
+                    
+                    System.out.printf("%n%nPresione ENTER para continuar...%n");
+                    scanner.nextLine();
+                }
+                case "5" -> {
                     // Mostrar red
                     redAgua.dibujarMatriz(true);
                     
                     System.out.printf("%n%nPresione ENTER para continuar...%n");
                     scanner.nextLine();
                 }
-                case "4" -> {
+                case "6" -> {
                     // Capacidad bomba a bomba
                     System.out.print("Zona origen: ");
                     String origen = scanner.nextLine();
@@ -67,7 +90,7 @@ public class Ejercicio14 {
                     System.out.printf("%n%nPresione ENTER para continuar...%n");
                     scanner.nextLine();
                 }
-                case "5" -> {
+                case "7" -> {
                     // Capacidad hasta bomba
                     System.out.print("Zona origen: ");
                     String origen = scanner.nextLine();
@@ -83,7 +106,7 @@ public class Ejercicio14 {
                     System.out.printf("%n%nPresione ENTER para continuar...%n");
                     scanner.nextLine();
                 }
-                case "6" -> {
+                case "8" -> {
                     // Camino capacidad maxima a bomba
                     System.out.print("Zona origen: ");
                     String origen = scanner.nextLine();
@@ -108,7 +131,7 @@ public class Ejercicio14 {
                     System.out.printf("%n%nPresione ENTER para continuar...%n");
                     scanner.nextLine();
                 }
-                case "7" -> {
+                case "9" -> {
                     System.exit(0);
                 }
                 default -> {
@@ -117,18 +140,20 @@ public class Ejercicio14 {
                     scanner.nextLine();
                 }
             }
-        } while (!input.startsWith("7"));
+        } while (!input.startsWith("9"));
     }
     
     public static void makeMenu() {
         System.out.println("======== MENU ========");
         System.out.println("=> 1 - Agregar zonas"); //Usando GrafoM.inicializar() ??
         System.out.println("=> 2 - Agregar canal");
-        System.out.println("=> 3 - Mostrar red");
-        System.out.println("=> 4 - Capacidad zona a zona"); //Encontrar mejor nombre
-        System.out.println("=> 5 - Capacidad hasta zona"); //Encontrar mejor nombre
-        System.out.println("=> 6 - Camino capacidad maxima zona a zona"); // floydWarshall() y getCamino()
-        System.out.println("=> 7 - Salir");
+        System.out.println("=> 3 - Eliminar zona");
+        System.out.println("=> 4 - Eliminar canal");
+        System.out.println("=> 5 - Mostrar red");
+        System.out.println("=> 6 - Capacidad zona a zona"); //Encontrar mejor nombre
+        System.out.println("=> 7 - Capacidad hasta zona"); //Encontrar mejor nombre
+        System.out.println("=> 8 - Camino capacidad maxima zona a zona"); // floydWarshall() y getCamino()
+        System.out.println("=> 9 - Salir");
         System.out.println("======================");
         System.out.print("Ingrese Opcion: ");
     }
