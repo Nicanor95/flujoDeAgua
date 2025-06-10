@@ -80,6 +80,7 @@ public class Ejercicio14 {
                 }
                 case "6" -> {
                     // Capacidad bomba a bomba
+                    redAgua.dibujarMatriz(true);
                     System.out.print("Zona origen: ");
                     String origen = scanner.nextLine();
                     System.out.print("Zona destino: ");
@@ -92,6 +93,7 @@ public class Ejercicio14 {
                 }
                 case "7" -> {
                     // Capacidad hasta bomba
+                    redAgua.dibujarMatriz(true);
                     System.out.print("Zona origen: ");
                     String origen = scanner.nextLine();
                     
@@ -108,6 +110,7 @@ public class Ejercicio14 {
                 }
                 case "8" -> {
                     // Camino capacidad maxima a bomba
+                    redAgua.dibujarMatriz(true);
                     System.out.print("Zona origen: ");
                     String origen = scanner.nextLine();
                     System.out.print("Zona destino: ");
