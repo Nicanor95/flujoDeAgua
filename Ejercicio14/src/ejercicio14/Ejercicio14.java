@@ -129,7 +129,7 @@ public class Ejercicio14 {
                     System.out.print("Zona destino: ");
                     String destino = scanner.nextLine();
                     
-                    if (cambios) { //floydWarshall es O^3!!!
+                    if (cambios) { //floydWarshall es O(n^3)!!!
                         costosEIntermedios = redAgua.floydWarshallMaximos();
                         cambios = true;
                     }

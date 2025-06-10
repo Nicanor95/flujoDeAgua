@@ -612,9 +612,7 @@ public class GrafoM <T> {
         // Inicializamos matriz de costos máximos
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (i == j) {
-                    costosMaximos[i][j] = 0; // La diagonal en 0.
-                } else if (costos[i][j] == Integer.MAX_VALUE) { 
+                if (costos[i][j] == Integer.MAX_VALUE) { 
                     costosMaximos[i][j] = Integer.MIN_VALUE; // Para que el valor no interfiera en la busqueda de camino, ya que buscamos los mas altos.
                 } else {
                     costosMaximos[i][j] = costos[i][j];
