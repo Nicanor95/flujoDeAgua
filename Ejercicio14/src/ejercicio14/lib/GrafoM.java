@@ -47,6 +47,22 @@ public class GrafoM <T> {
         }
     }
     
+    public void eliminarVertice(T vertice) {
+        if (!vertices.contains(vertice)) return; //Salida temprana.
+        
+        // Hacemos una lista de los vertices que referencian el vertice a eliminar.
+        LinkedList<T> izquierda = this.left(vertice);
+        
+        // Para cada vertice en dicha lista, eliminamos el arco correspondiente.
+        for (T origen: izquierda) {
+            this.eliminarArco(origen, vertice);
+        }
+        
+        vertices.remove(vertice);
+        
+        this.size = vertices.size();
+    }
+    
     /**
      * Agrega un Arco <code>origen -> destino</code> con etiqueta 0.
      * @param origen Vertice de origen
