@@ -169,7 +169,7 @@ public class Ejercicio14 {
                     scanner.nextLine();
                 }
             }
-        } while (!input.startsWith("9"));
+        } while (!input.startsWith("10"));
     }
     
     public static void makeMenu() {
