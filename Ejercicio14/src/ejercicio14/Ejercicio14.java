@@ -168,6 +168,8 @@ public class Ejercicio14 {
                         System.out.printf("|%10s:%-10d|%n", x.getVertice(), x.getCosto());
                     }
                     
+                    System.out.printf("%n%nPresione ENTER para continuar...%n");
+                    scanner.nextLine();
                 }
                 case "10" -> {
                     System.exit(0);
