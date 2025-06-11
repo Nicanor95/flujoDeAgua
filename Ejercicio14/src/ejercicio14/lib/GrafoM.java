@@ -652,10 +652,10 @@ public class GrafoM <T> {
                         && costosMaximos[k][j] != null) { // Chequeamos solo los caminos validos, MIN_VALUE y MAX_VALUE no se comportan al realizar operaciones, asi que mejor evitarlos de cuajo.
                         Integer camino = costosMaximos[i][k] + costosMaximos[k][j];
                         
-                        // Chequeamos que no (A) se tenga k en el camino, para evitar recursion infinita. Tomalo como un visited.
+                        // Chequeamos que no (A) se tenga j en el camino, para evitar recursion infinita. Tomalo como un visited.
                         // Tambien si (B) el costo en la casilla es menor al del nuevo camino. 
                         // (¬ A ^ B)
-                        if (!Arrays.asList(intermedios[j]).contains(k) && costosMaximos[i][j] < camino) {
+                        if (!Arrays.asList(intermedios[i]).contains(j) && costosMaximos[i][j] < camino) {
                             costosMaximos[i][j] = camino;
                             intermedios[i][j] = k;
                         }
