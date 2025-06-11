@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Ejercicio14 {
     
     public static void main(String[] args) {
-        GrafoM redAgua = new GrafoM(10);
+        GrafoM redAgua = new GrafoM();
         Scanner scanner = new Scanner(System.in);
         ArrayList costosEIntermedios = new ArrayList<>();
         Boolean cambios = true;
