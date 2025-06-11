@@ -60,16 +60,27 @@ public class GrafoM <T> {
         
         // Hacemos una lista de los vertices que referencian el vertice a eliminar.
         LinkedList<T> izquierda = this.left(vertice);
+        // Hacemos una lista de los vertices referenciados por el vertice a eliminar.
+        LinkedList<T> derecha = this.right(vertice);
         
-        // Para cada vertice en dicha lista, eliminamos el arco correspondiente.
+        // Eliminamos los arcos referenciados en las listas.
         for (T origen: izquierda) {
             this.eliminarArco(origen, vertice);
         }
         
+        for (T destino: derecha) {
+            this.eliminarArco(vertice, destino);
+        }
+        
+        
+        // Obtenemos el indice del vertice para despues poder ajustar la matriz.
         int indiceVertice = vertices.indexOf(vertice);
         
-        for (int i = 0; i < vertices.size(); i++) {
-            arcos[indiceVertice][i] = null;
+        // Ajustamos la matriz.
+        for (int i = indiceVertice; i < vertices.size(); i++) {
+            for (int j = indiceVertice; j < vertices.size(); j++) {
+                arcos[i-1][j-1] = arcos [i][j];
+            }
         }
         
         vertices.remove(vertice);
