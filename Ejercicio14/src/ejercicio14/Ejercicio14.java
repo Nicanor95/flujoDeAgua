@@ -100,7 +100,6 @@ public class Ejercicio14 {
                     String destino = scanner.nextLine();
                     
                     try {
-                        System.out.printf("Flujo máximo: %d%n", redAgua.dijkstraInvertido(origen, destino));
                     } catch (IndexOutOfBoundsException e) {
                         System.out.println("Origen o destino no existen en la red.");
                     }
