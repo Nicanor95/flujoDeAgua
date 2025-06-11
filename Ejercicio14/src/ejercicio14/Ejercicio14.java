@@ -99,7 +99,11 @@ public class Ejercicio14 {
                     System.out.print("Zona destino: ");
                     String destino = scanner.nextLine();
                     
-                    System.out.printf("Flujo máximo: %d%n", redAgua.dijkstraInvertido(origen, destino));
+                    try {
+                        System.out.printf("Flujo máximo: %d%n", redAgua.dijkstraInvertido(origen, destino));
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("Origen o destino no existen en la red.");
+                    }
                     
                     System.out.printf("%n%nPresione ENTER para continuar...%n");
                     scanner.nextLine();
